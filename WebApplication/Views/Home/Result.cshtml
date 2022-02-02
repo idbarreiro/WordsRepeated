@@ -1,0 +1,39 @@
+﻿@model TextViewModel
+@{
+    ViewData["Title"] = "Palabras Repetidas";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Procesador de texto</h2>
+</div>
+
+<form method="post">
+    <h3>Resultado</h3>
+    <div class="form-group">
+        <label asp-for="Text">Texto</label>
+        <textarea class="form-control" asp-for="Text" disabled="disabled"></textarea>
+    </div>
+    <div class="form-group">
+        @if (Model.ListWords.Count > 0)
+        {
+            <label asp-for="Text">Palabras repetidas</label>
+            <table border="1" class="default">
+                <tr>
+                    <th>Palabra</th>
+                    <th>Cantidad</th>
+                </tr>
+                @foreach (var m in Model.ListWords)
+                {
+                    <tr>
+                        <td>@m.Name</td>
+                        <td>@m.Amount</td>
+                    </tr>
+                }
+            </table>
+        }
+        @if (Model.ListWords.Count == 0)
+        {
+            <p>No hay palabras repetidas</p>
+        }
+    </div>
+</form>
